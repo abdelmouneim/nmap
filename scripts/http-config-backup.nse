@@ -217,8 +217,8 @@ action = function (host, port)
       if response.status == 200 and http.page_exists(response, result_404, known_404, url_path) then
         -- check it if is valid before inserting
         if cfg.check(response.body) then
-          local filename = stdnse.escape_filename((host.targetname or host.ip) .. url_path)
-
+          -- local filename = stdnse.escape_filename((host.targetname or host.ip) .. url_path)
+          local filename = stdnse.filename_escape((host.targetname or host.ip) .. url_path)
           -- save the content
           if save then
             local status, err = write_file(save .. filename, response.body);
